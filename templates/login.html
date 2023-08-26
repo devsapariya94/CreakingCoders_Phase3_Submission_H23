@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
+
       body {
         margin: 0;
         padding: 0;
@@ -25,7 +26,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start; /* Align content to the left */
+        align-items: flex-start; 
       }
     
       .login-title {
@@ -54,7 +55,6 @@
       }
     
       .forgot-password {
-        /* align-self: flex-end; */
         margin-left: 55%;
         font-size: 14px;
         padding-bottom: 20px;
@@ -90,6 +90,7 @@
         border-radius: 3px;
         cursor: pointer;
         margin-bottom: 20px;
+        text-decoration: none;
       }
     
       .continue-with-google:hover {
@@ -108,8 +109,8 @@
       img{
         max-width: 100%;
         max-height: 100%;
+        padding-left: 20px;
       }
-      /* ... Previous CSS ... */
 
         .account-section {
         text-align: center;
@@ -118,7 +119,7 @@
         .account-section p {
         font-size: 14px;
         color: #ffffff;
-        margin-top: 10px; /* Add margin at the top to separate from the button */
+        margin-top: 10px; 
         }
 
         .account-section a {
@@ -130,6 +131,11 @@
 
         .account-section a:hover {
         text-decoration: underline;
+        }
+
+        .google{
+          height: 20px;
+          width: 20px;
         }
 
     
@@ -145,8 +151,8 @@
         <h1 class="login-title">Login</h1>
         <form action="/login" method="post">
         <div class="input-container">
-          <label for="userId">User Name</label>
-          <input type="text" id="username" name="username" placeholder="Enter your user ID">
+          <label for="emailId">Email-ID</label>
+          <input type="text" id="email" name="email" placeholder="Enter your Email-ID">
         </div>
         <div class="input-container">
           <label for="password">Password</label>
@@ -155,9 +161,9 @@
         <a class="forgot-password" href="#">Forgot Password?</a>
           <button class="login-button" type="submit">Log In</button>
         </form>
-        <button class="continue-with-google">Continue with Google</button>
+        <button class="continue-with-google"><a class="google_button" href="/login/google"><img class="google" src="../static/image/google.jpg"/>Continue with Google</a></button>
         <div class="account-section">
-            <p>Already Have an Account? <a href="/register">Sign In</a></p>
+            <p>Don't have any account? <a href="/register">Sign In</a></p>
           </div>
       </div>
       

@@ -16,7 +16,7 @@
 
   .login-container {
     width: 50%;
-    padding: 50px;
+    padding: 120px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
   }
 
   .input-container label {
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 5px;
   }
 
@@ -58,7 +58,7 @@
   }
 
   .login-button {
-    width: 70%;
+    width: 100%;
     padding: 10px;
     margin-top: 20px;
     background-color: #ffffff;
@@ -75,7 +75,7 @@
   }
 
   .continue-with-google {
-    width: 70%;
+    width: 55%;
     margin-top: 10px;
     padding: 10px;
     background-color: #fff;
@@ -107,6 +107,11 @@
     margin-top: 10px;
     text-align: center;
   }
+  .google{
+          height: 20px;
+          width: 20px;
+        }
+
 
 </style>
 </head>
@@ -121,11 +126,11 @@
   {% endif %}
 {% endwith %}
 
-{% if error %}
+<!-- {% if error %} -->
     <div class="error-message">
         {{ error }}
     </div>
-{% endif %}
+<!-- {% endif %} -->
   <div class="login-container">
     <h1 class="login-title">Sign-Up</h1>
     <form action="/register" method="post">
@@ -144,8 +149,10 @@
     </div>
       <button class="login-button" type="submit">Sign-Up</button>
     </form>
-    <button class="continue-with-google">Continue with Google</button>
-    <label for="already_signedin" class="sign_in">already signed in? <a href="/login">login</a></label>
+    <button class="continue-with-google"><a class="google_button" href="/login/google"><img class="google" src="../static/image/google.jpg"/>Continue with Google</a></button>
+    <div class="account-section">
+      <p>Already Have an Account? <a href="/login">Login In</a></p>
+    </div>
   </div>
   <div class="image-container">
     <img class="img" src="{{ url_for('static', filename='image/loginimg.jpg') }}" alt="image"/>
