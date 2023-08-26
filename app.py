@@ -16,7 +16,6 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.Integer, nullable=False)
-    mobile = db.Column(db.Integer, nullable=False)
     password = db.Column(db.Integer)
     role = db.Column(db.Integer)
     def __repr__(self):
@@ -29,6 +28,15 @@ class Medicine(db.Model):
     use_for = db.Column(db.String(50), nullable=False)
     def __repr__(self):
         return '<Medicine %r>' % self.name
+
+
+class Prescription(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    patient_id = db.Column(db.Integer, nullable=False)
+    doctor_id = db.Column(db.Integer, nullable=False)
+    medicine_id = db.Column(db.Integer, nullable=False)
+    def __repr__(self):
+        return '<Prescription %r>' % self.name
 
 
 
@@ -69,8 +77,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        mobile = request.form['mobile']
-        user = User(name=username, password=password, email=email, mobile=mobile)
+        user = User(name=username, password=password, email=email)
         db.session.add(user)
         db.session.commit()
         return render_template('index.html')
@@ -104,6 +111,53 @@ def patient():
         return render_template('patient.html')
     else:
         return render_template('index.html')
+
+
+
+        
+
+#add prescription by the doctor
+@app.route('/add_prescription', methods=['POST'])
+def add_prescription():
+    if current_user.role != 2:
+        return render_template('index.html')
+    patient_id = request.form['patient_id']
+    doctor_id = request.form['doctor_id']
+    medicine_id = request.form['medicine_id']
+    prescription = Prescription(patient_id=patient_id, doctor_id=doctor_id, medicine_id=medicine_id)
+    db.session.add(prescription)
+    db.session.commit()
+    return render_template('doctor.html')
+
+
+            
+
+#add medicine by the admin
+@app.route('/add_medicine', methods=['POST'])
+def add_medicine():
+    if current_user.role != 1:
+        return render_template('index.html')
+    name = request.form['name']
+    use_for = request.form['use_for']
+    medicine = Medicine(name=name, use_for=use_for)
+    db.session.add(medicine)
+    db.session.commit()
+    return render_template('admin.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/get_suggestions', methods=['GET'])
 def get_suggestions():
