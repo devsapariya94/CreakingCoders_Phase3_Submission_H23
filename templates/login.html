@@ -96,7 +96,7 @@
       .image-container {
         width: 50%;
         background-color: white;
-        background-image: url('your-image-url.jpg');
+        background-image: "url('{{ url_for('static', filename='image/loginimg.jpg') }}')";
         background-size: cover;
         background-position: center;
       }
@@ -137,27 +137,33 @@
     </style>
     </head>
     <body>
+      {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+{% endif %}
       <div class="login-container">
         <h1 class="login-title">Login</h1>
+        <form action="/login" method="post">
         <div class="input-container">
-          <label for="userId">User ID</label>
-          <input type="text" id="userId" placeholder="Enter your user ID">
+          <label for="userId">User Name</label>
+          <input type="text" id="username" name="username" placeholder="Enter your user ID">
         </div>
         <div class="input-container">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password">
+          <input type="password" id="password" name="password" placeholder="Enter your password">
         </div>
         <a class="forgot-password" href="#">Forgot Password?</a>
           <button class="login-button" type="submit">Log In</button>
         </form>
         <button class="continue-with-google">Continue with Google</button>
         <div class="account-section">
-            <p>Already Have an Account? <a href="#">Sign In</a></p>
+            <p>Already Have an Account? <a href="/register">Sign In</a></p>
           </div>
       </div>
       
       <div class="image-container">
-        <img class="img" src="./image/loginimg.jpg" alt="image"/>
+        <img class="img" src="{{ url_for('static', filename='image/loginimg.jpg') }}" alt="image" />
       </div>
     </body>
     </html>
