@@ -1,0 +1,163 @@
+
+
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh;
+        background-color: #B5CCFB;
+      }
+    
+      .login-container {
+        width: 50%;
+        padding: 50px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start; /* Align content to the left */
+      }
+    
+      .login-title {
+        font-family: 'Calistoga';
+        font-size: 64px;
+        margin-bottom: 20px;
+      }
+    
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+      }
+    
+      .input-container label {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+    
+      .input-container input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    
+      .forgot-password {
+        /* align-self: flex-end; */
+        margin-left: 20%;
+        font-size: 14px;
+        padding-bottom: 20px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    
+      .login-button {
+        width: 70%;
+        padding: 10px;
+        background-color: #ffffff;
+        border: none;
+        color: #000000;
+        font-size: 16px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    
+      .login-button:hover {
+        background-color: #324F99;
+        color: #fff;
+      }
+    
+      .continue-with-google {
+        width: 70%;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border: none;
+        color: #000000;
+        font-size: 16px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    
+      .continue-with-google:hover {
+         background-color: #324F99;
+        color: #fff;
+      }
+    
+      .image-container {
+        width: 50%;
+        background-color: white;
+        background-image: url('your-image-url.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+      /* ... Previous CSS ... */
+
+        .continue-with-google {
+        /* ... Existing styles ... */
+        margin-bottom: 20px; /* Add margin at the bottom to separate from the account section */
+        }
+
+        .account-section {
+        text-align: center;
+        }
+
+        .account-section p {
+        font-size: 14px;
+        color: #ffffff;
+        margin-top: 10px; /* Add margin at the top to separate from the button */
+        }
+
+        .account-section a {
+        color: #324F99;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 5px;
+        }
+
+        .account-section a:hover {
+        text-decoration: underline;
+        }
+
+    
+    </style>
+    </head>
+    <body>
+      <div class="login-container">
+        <h1 class="login-title">Login</h1>
+        <div class="input-container">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" placeholder="Enter your user ID">
+        </div>
+        <div class="input-container">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <a class="forgot-password" href="#">Forgot Password?</a>
+          <button class="login-button" type="submit">Log In</button>
+        </form>
+        <button class="continue-with-google">Continue with Google</button>
+        <div class="account-section">
+            <p>Already Have an Account? <a href="#">Sign In</a></p>
+          </div>
+      </div>
+      
+      <div class="image-container">
+        <img class="img" src="./image/loginimg.jpg" alt="image"/>
+      </div>
+    </body>
+    </html>
