@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    :root {
+        --container-width: 1178px;
+        --container-height: 700px;
+        --entry-width: 163px;
+        --entry-height: 41px;
+        --entry-margin: 10px;
+        --entry-font-size: 24px;
+        --entry-font-family: Cantata One, sans-serif;
+        --entry-font-weight: 400;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: var(--container-width);
+        height: var(--container-height);
+        left: 202px;
+        top: 121px;
+        position: absolute;
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        width: 1093px;
+        height: 67px;
+        left: 244px;
+        top: 100px;
+        position: absolute;
+        background: #F6F8FE;
+        border-radius: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .title {
+        width: 682px;
+        height: 76px;
+        left: 257px;
+        top: 20px;
+        position: absolute;
+        color: black;
+        font-size: 36px;
+        font-family: Caudex, sans-serif;
+        font-weight: 700;
+        word-wrap: break-word;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-entry {
+        color: black;
+        font-size: var(--entry-font-size);
+        font-family: var(--entry-font-family);
+        font-weight: var(--entry-font-weight);
+        word-wrap: break-word;
+        margin: 0;
+        padding: 0;
+    }
+
+    .entry {
+        width: var(--entry-width);
+        height: var(--entry-height);
+        position: absolute;
+        margin: 0;
+        padding: 0;
+    }
+
+    .entry-name {
+        left: 266px;
+        top: 111px;
+    }
+
+    .entry-date {
+        left: 530px;
+        top: 111px;
+    }
+
+    .entry-time {
+        left: 841px;
+        top: 111px;
+    }
+
+    .entry-view {
+        left: 1100px;
+        top: 111px;
+    }
+
+    .patient-entry {
+        left: 266px;
+        position: absolute;
+        margin: var(--entry-margin);
+        padding: 0;
+    }
+
+    .patient-entry-name {
+        top: 200px;
+    }
+
+    .patient-entry-date {
+        left: 530px;
+        top: 200px;
+    }
+
+    .patient-entry-time {
+        left: 840px;
+        top: 200px;
+    }
+
+    .patient-entry-button {
+        left: 1050px;
+        top: 200px;
+        background-color: white;
+    }
+</style>
+</head>
+<body>
+    <div class="container"></div>
+    <div class="header"></div>
+    <div class="title">Schedules</div>
+    <div class="header-entry entry entry-name">Name</div>
+    <div class="header-entry entry entry-date">Date</div>
+    <div class="header-entry entry entry-time">Time</div>
+    <div class="header-entry entry entry-view">View</div>
+
+    <!-- Repeat the following for each patient entry -->
+    <div class="patient-entry entry patient-entry-name">Patient Name</div>
+    <div class="patient-entry entry patient-entry-date">Date</div>
+    <div class="patient-entry entry patient-entry-time">Time</div>
+    <button class="patient-entry entry patient-entry-button">Details</button>
+    <!-- End of patient entry -->
+
+</body>
+</html>
