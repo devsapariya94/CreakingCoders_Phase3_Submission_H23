@@ -80,17 +80,26 @@
 <body>
     <div class="login-container">
         <div class="login-title">Appointment</div>
+        <form action="">
         <input id="nameInput" class="input-field" type="text" placeholder="Enter the Name">
+        <label>Enter the Date: </label>
+
+        <input id="nameInput" class="input-field" type="date" placeholder="Enter the Date">
+        <label>Enter the Time: </label>
+
+        <input id="nameInput" class="input-field" type="time" placeholder="Enter the Time">
        
         <label>Enter the symptoms: </label>
-        <input id="symptomsInput" class="input-field" type="text" placeholder="">
+        <input id="symptomsInput" class="input-field" type="symtopms" placeholder="">
       
         </br>
         <button class="login-button">Headache</button>
         <button class="login-button">Stomach- ache</button>
         <button class="login-button">Cold</button>
-    </div>
-
+        <button class="login-button">Fever</button></br></br>
+        <a href class="login-button2">submit</a>
+    </form>
+ 
     <script>
         const nameInput = document.getElementById('nameInput');
         const symptomsInput = document.getElementById('symptomsInput');
@@ -98,6 +107,7 @@
 
         buttons.forEach(button => {
             button.addEventListener('click', function() {
+                event.preventDefault(); 
                 const symptomText = button.textContent;
                 if (!symptomsInput.value.includes(symptomText)) {
                     symptomsInput.value = symptomText + (symptomsInput.value ? ', ' : '') + symptomsInput.value;
@@ -105,5 +115,6 @@
             });
         });
     </script>
+    </div>
     </body>
 </html>

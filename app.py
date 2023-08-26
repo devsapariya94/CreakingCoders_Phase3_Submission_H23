@@ -65,6 +65,15 @@ class Prescription(db.Model):
     def __repr__(self):
         return '<Prescription %r>' % self.name
 
+class Appointment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    patient_id = db.Column(db.Integer, nullable=False)
+    doctor_id = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(50), nullable=False)
+    symtopms = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.String(50), nullable=False)
+    def __repr__(self):
+        return '<Appointment %r>' % self.name
 
 
 if not os.path.exists('database.db'):
@@ -75,10 +84,11 @@ if not os.path.exists('database.db'):
 
 @app.route('/')
 def index():
-    session['url']="/"
-    if current_user.is_authenticated:
-        return render_template('home.html',user=current_user)
     
+    if current_user.is_authenticated:
+        session['url']="/"
+        return render_template('home.html',user=current_user)
+    session['url']="/"
     return render_template('index.html')
 
 
@@ -179,14 +189,34 @@ def add_admin():
     return render_template('index.html')
 
 
+@app.route('/add_doctor', methods=['POST'])
+def add_doctor():
+    username = "doctor"
+    password = "doctor"
+    email = "doc@doc.com"
+    role = 2
+    auth_type = "local"
+    user = User(username=username, password=password, email=email, role=role, auth_type=auth_type)
+    db.session.add(user)
+    db.session.commit()
+    return render_template('index.html')
+    
+
 #book apoitment
 #healt record history
 #doctor shcedule
+
+
 #manage doctor
     #doctor list
+
+
 #manage pharmacy
+
 #view all patient
+
 #all doctor schedual
+
 #create summery of all doctor that how many patient they have seen at the end of the day to admin
 #meeting with admin 
         
@@ -224,6 +254,33 @@ def add_medicine():
 
 
 
+@app.route('/book_appointment', methods=['POST',"GET"])
+def book_appointment():
+    if current_user.role != 3:
+        return render_template('index.html')
+    if request.method == 'POST':
+        patient_id = current_user.id
+        
+        #find the free time of the doctor and make appointment on that time
+       #don't take the time from the user
+
+        # get the random doctor id
+        doctor_id = random(User.query.filter_by(role=2).all()).id   
+
+        date = request.form['date']
+        time = request.form['time']
+
+        #check if the doctor is free on that time
+        
+        symtopms = request.form['symtopms']
+        appointment = Appointment(patient_id=patient_id, doctor_id=doctor_id, date=date, time=time, symtopms=symtopms)
+        db.session.add(appointment)
+        db.session.commit()
+        return render_template('patient.html')
+    else:
+        doctors = User.query.filter_by(role=2).all()
+        return render_template('book_appointment.html', doctors=doctors)
+
 
 
 
@@ -256,6 +313,20 @@ def get_patient():
         suggestions = [patient.name for patient in patients]
 
     return render_template('suggestions.html', suggestions=suggestions)
+
+
+
+
+
+@app.route('/manage_doctor', methods=['GET'])
+def manage_doctor():
+    doctors = User.query.filter_by(role=2).all()
+    return render_template('manage_doctor.html', doctors=doctors)
+
+
+
+
+
 
 
 
@@ -344,7 +415,7 @@ def callback():
 
 @app.route('/test')
 def test():
-    return render_template('userdash.html')
+    return render_template('Appointment.html')
 
 
 
