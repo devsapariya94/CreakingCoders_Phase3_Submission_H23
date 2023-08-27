@@ -56,6 +56,6 @@ Gaussian Naive Bayes is a probabilistic algorithm based on Bayes' theorem, assum
 ## Currently Working On
 
 1.  Refining the User Experience [Figma Link](https://www.figma.com/file/hncKZRmPf7TyfbGVGzhq0g/Hackout?type=design&node-id=0-1&mode=design&t=GLcxEuiqlTqRocqH-0)
-2.  Integrating the ML Model into the main project ([ML model])(https://github.com/devsapariya94/CreakingCoders_Phase3_Submission_H23/blob/main/ML%20Model%20to%20Predict%20the%20possible%20dicease.ipynb)
+2.  Integrating the ML Model into the main project ([ML model]))(https://github.com/devsapariya94/CreakingCoders_Phase3_Submission_H23/blob/main/ML%20Model%20to%20Predict%20the%20possible%20dicease.ipynb)
 
 ## Future Plans
