@@ -1,8 +1,7 @@
 # CreakingCoders
 
-for setup
-
-run the following command
+Steps for setup
+(run commands)
 
 git clone https://github.com/devsapariya94/CreakingCoders.git
 
