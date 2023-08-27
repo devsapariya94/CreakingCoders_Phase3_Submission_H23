@@ -55,21 +55,38 @@ Gaussian Naive Bayes is a probabilistic algorithm based on Bayes' theorem, assum
 
 ## Steps for creating the model
 1. Importing neccesary libraries:
-2. Load and preprocess the data
-3. Encoding the Target Labels
-4. Splitting data
-5. Defining Cross-Validation Scoring Metric:
-6. Initializing Models:
-7. Cross-Validation:
-8. Training and Evaluating Individual Models:
-9. Training Combined Models:
-10. Making Predictions on Test Data:
-    1. Combining Predictions
-    1. Calculating Accuracy and Confusion matrix for Combined Model
-    1. Creating symptom index:
-    1. Defining Prediction Function
+2.Loading and Preprocessing data:
+-->Load the dataset from a CSV file, removing columns with missing values.
+-->Visualize the distribution of disease occurrences using a bar plot.
+3. Encoding the Target Labels:
+-->Use LabelEncoder to convert disease names (categorical labels) into numerical values.
+5. Splitting data:
+-->Split the data into training and testing sets using train_test_split.
+6. Defining Cross-Validation Scoring Metric:
+-->Define a function to calculate accuracy score for cross-validation.
+7. Initializing Models:
+-->Create instances of Support Vector Classifier (SVC), Gaussian Naive Bayes, and Random Forest Classifier.
+8. Cross-Validation:
+-->Perform cross-validation for each model and print mean accuracy scores.
+9. Training and Evaluating Individual Models:
+-->Train an SVM model on the training data and evaluate its accuracy on both training and testing sets.
+-->Display a confusion matrix for the SVM model's predictions.
+10. Training Combined Models:
+-->Train final models (SVM, Naive Bayes, Random Forest) on the entire dataset.
+11. Making Predictions on Test Data:
+-->Load the test dataset, preprocess it, and create input features (test_X) and target labels (test_Y).
+-->Use the trained models to make individual predictions (SVM, Naive Bayes, Random Forest).
+    1. Combining Predictions:
+    -->Combine individual model predictions using mode voting to get the final combined prediction.
+    2. Calculating Accuracy and Confusion matrix for Combined Model:
+    -->Calculate accuracy on the test dataset using the combined model.
+    -->Display a confusion matrix for the combined model's predictions.
+    3. Creating symptom index:
+    -->Create a dictionary to map symptom names to their indices in the input features.
+    4. Defining Prediction Function:
+    -->Create a function that takes a comma-separated list of symptoms as input and predicts the disease using the combined model.
     1. Testing the prediction Function  
-
+    -->Test the prediction function with a sample symptom input.
 ## Currently Working On
 
 1.  Refining the User Experience [Figma Link](https://www.figma.com/file/hncKZRmPf7TyfbGVGzhq0g/Hackout?type=design&node-id=0-1&mode=design&t=GLcxEuiqlTqRocqH-0)
