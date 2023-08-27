@@ -142,11 +142,23 @@
     </style>
     </head>
     <body>
-      {% if error %}
-    <div class="error-message">
-        {{ error }}
-    </div>
-{% endif %}
+      <link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <div class="container mx-auto my-4">
+            {% for message in messages %}
+              {% if message[0] == 'error' %}
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-2" role="alert">
+              {% else %}
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 my-2" role="alert">
+              {% endif %}
+            
+              <p>{{ message[1] }}</p>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
       <div class="login-container">
         <h1 class="login-title">Login</h1>
         <form action="/login" method="post">

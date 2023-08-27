@@ -80,24 +80,21 @@
 <body>
     <div class="login-container">
         <div class="login-title">Appointment</div>
-        <form action="">
+        <form action="/book_appointment" method="post">
         <input id="nameInput" class="input-field" type="text" placeholder="Enter the Name">
-        <label>Enter the Date: </label>
-
-        <input id="nameInput" class="input-field" type="date" placeholder="Enter the Date">
-        <label>Enter the Time: </label>
-
-        <input id="nameInput" class="input-field" type="time" placeholder="Enter the Time">
+       
        
         <label>Enter the symptoms: </label>
-        <input id="symptomsInput" class="input-field" type="symtopms" placeholder="">
+        <input id="symptomsInput" class="input-field" type="text" name="symptoms" placeholder="">
+        
       
         </br>
         <button class="login-button">Headache</button>
         <button class="login-button">Stomach- ache</button>
         <button class="login-button">Cold</button>
         <button class="login-button">Fever</button></br></br>
-        <a href class="login-button2">submit</a>
+        
+        <button type="submit">Book Appointment</button>
     </form>
  
     <script>

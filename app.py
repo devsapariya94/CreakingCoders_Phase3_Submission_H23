@@ -5,6 +5,8 @@ import os
 from oauthlib.oauth2 import WebApplicationClient
 import json
 import requests
+import random
+from datetime import datetime, timedelta
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 app = Flask(__name__)
@@ -29,6 +31,7 @@ GOOGLE_DISCOVERY_URL = (
 )
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
+session['url'] = "/"
 
 @login_manager.user_loader
 
@@ -70,10 +73,11 @@ class Appointment(db.Model):
     patient_id = db.Column(db.Integer, nullable=False)
     doctor_id = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String(50), nullable=False)
-    symtopms = db.Column(db.String(50), nullable=False)
-    time = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.Time, nullable=False)  # Change this field type
+    symptoms = db.Column(db.String(50), nullable=False)  # Correct typo in field name
     def __repr__(self):
-        return '<Appointment %r>' % self.name
+        return '<Appointment %r>' % self.id  # Correct repr method to show id
+
 
 
 if not os.path.exists('database.db'):
@@ -256,8 +260,9 @@ def add_medicine():
 
 @app.route('/book_appointment', methods=['POST',"GET"])
 def book_appointment():
-    if current_user.role != 3:
-        return render_template('index.html')
+    if not current_user.is_authenticated:
+        return render_template('login.html', error='Please log in to book an appointment.')
+
     if request.method == 'POST':
         patient_id = current_user.id
         
@@ -265,18 +270,31 @@ def book_appointment():
        #don't take the time from the user
 
         # get the random doctor id
-        doctor_id = random(User.query.filter_by(role=2).all()).id   
+        doctor_id = 0
 
-        date = request.form['date']
-        time = request.form['time']
+        last_appointment = Appointment.query.filter_by(doctor_id=doctor_id).order_by(Appointment.id.desc()).first()
 
-        #check if the doctor is free on that time
         
-        symtopms = request.form['symtopms']
-        appointment = Appointment(patient_id=patient_id, doctor_id=doctor_id, date=date, time=time, symtopms=symtopms)
+        # no appointment found then start from 9
+        if last_appointment == None:
+            time = datetime.strptime("09:00", "%H:%M").time()
+        else:
+            last_appointment_time = last_appointment.time
+            last_appointment_datetime = datetime.strptime(last_appointment_time, "%H:%M")
+            new_time = last_appointment_datetime + timedelta(minutes=30)
+            time = new_time.time()
+        
+        #data is todays date
+
+        date = datetime.now().strftime("%d/%m/%Y")
+        
+        symptoms = request.form['symptoms']
+
+        appointment = Appointment(patient_id=patient_id, doctor_id=doctor_id, date=date, time=time, symptoms=symptoms)
+
         db.session.add(appointment)
         db.session.commit()
-        return render_template('patient.html')
+        return render_template('home.html', user=current_user, message="Appointment booked successfully")
     else:
         doctors = User.query.filter_by(role=2).all()
         return render_template('book_appointment.html', doctors=doctors)
