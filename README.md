@@ -13,7 +13,7 @@ Create a technology to improve adoption by doctors, nurses and other health/admi
 Commands:
 git clone https://github.com/devsapariya94/CreakingCoders_Phase3_Submission_H23.git
 
-cd CreakingCoders
+cd CreakingCoders_Phase3_Submission_H23
 
 pip install virtualenv
 
