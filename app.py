@@ -310,31 +310,11 @@ def view_all_appointments():
 
 @app.route('/api/search_medicine', methods=['GET'])
 def api_search_medicine():
-    query = request.args.get('query')
+    query = request.json.get('query')
     medicines = []
-
+    print(query)
     if query:
-        # Simulating database query using a list of Medicine objects
-        all_medicines = [
-            Medicine("Aspirin"),
-            Medicine("Ibuprofen"),
-            Medicine("Paracetamol"),
-            Medicine("Loratadine"),
-            Medicine("Amoxicillin"),
-            Medicine("Omeprazole"),
-            Medicine("Codeine"),
-            Medicine("Ciprofloxacin"),
-            Medicine("Propranolol"),
-            Medicine("Cetirizine"),
-            Medicine("Cyclizine"),
-            Medicine("Diazepam"),
-            Medicine("Dihydrocodeine"),
-            Medicine("Doxycycline"),
-
-        ]
-        
-        # Filter medicines based on query
-        medicines = [medicine.name for medicine in all_medicines if query.lower() in medicine.name.lower()]
+        all_medicines = ['paracetamol','parac','paracet','paracetamol 500mg','paracetamol 500mg ta',"asperin", "aspirin", "aspirin 500mg", "aspirin 500mg ta", "aspirin 50"]
 
     return jsonify(medicines)
 

@@ -1,9 +1,3 @@
-{% if error %}
-<div class="error-message">
-    {{ error }}
-</div>
-{% endif %}
-
 
 {% if user.role == 1 %}
 
@@ -114,6 +108,11 @@
     </style>
 </head>
 <body>
+    {% if error %}
+<div class="error-message">
+    {{ error }}
+</div>
+{% endif %}
     <div class="navbar">
         <div class="logo">Your Logo</div>
         <div class="menu-items">
@@ -213,6 +212,11 @@
     </style>
 </head>
 <body>
+    {% if error %}
+<div class="error-message">
+    {{ error }}
+</div>
+{% endif %}
     <div class="navbar">
         <div class="logo">Your Logo</div>
         <div class="menu-items">
