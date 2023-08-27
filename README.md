@@ -53,6 +53,23 @@ Random Forest is an ensemble technique combining decision trees. It predicts dis
 3. Gaussian Naive Bayes (NB):
 Gaussian Naive Bayes is a probabilistic algorithm based on Bayes' theorem, assuming Gaussian-distributed features. In disease prediction, it estimates disease probabilities given symptoms. It calculates the likelihood of observing symptoms for each disease, predicting the highest probability.
 
+## Steps for creating the model
+1. Importing neccesary libraries:
+2. Load and preprocess the data
+3. Encoding the Target Labels
+4. Splitting data
+5. Defining Cross-Validation Scoring Metric:
+6. Initializing Models:
+7. Cross-Validation:
+8. Training and Evaluating Individual Models:
+9. Training Combined Models:
+10. Making Predictions on Test Data:
+    1. Combining Predictions
+    1. Calculating Accuracy and Confusion matrix for Combined Model
+    1. Creating symptom index:
+    1. Defining Prediction Function
+    1. Testing the prediction Function  
+
 ## Currently Working On
 
 1.  Refining the User Experience [Figma Link](https://www.figma.com/file/hncKZRmPf7TyfbGVGzhq0g/Hackout?type=design&node-id=0-1&mode=design&t=GLcxEuiqlTqRocqH-0)
