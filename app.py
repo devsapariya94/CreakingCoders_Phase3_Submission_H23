@@ -55,7 +55,6 @@ class User(db.Model,UserMixin):
 class Medicine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    use_for = db.Column(db.String(50), nullable=False)
     def __repr__(self):
         return '<Medicine %r>' % self.name
 
@@ -206,23 +205,8 @@ def add_doctor():
     return render_template('index.html')
     
 
-#book apoitment
-#healt record history
-#doctor shcedule
 
 
-#manage doctor
-    #doctor list
-
-
-#manage pharmacy
-
-#view all patient
-
-#all doctor schedual
-
-#create summery of all doctor that how many patient they have seen at the end of the day to admin
-#meeting with admin 
         
 
 #add prescription by the doctor
@@ -307,6 +291,52 @@ def book_appointment():
 
 
 
+@app.route('/patient_history')
+def patient_history():
+    if current_user.role != 3:
+        return render_template('index.html')
+    appointments = Appointment.query.filter_by(patient_id=current_user.id).all()
+    return render_template('patient_history.html', appointments=appointments)
+
+
+@app.route('/view_all_appointments')
+def view_all_appointments():
+    if current_user.role != 1:
+        return render_template('index.html')
+    appointments = Appointment.query.filter_by(doctor_id=current_user.id).all()
+    return render_template('view_all_appointments.html', appointments=appointments)
+
+
+
+@app.route('/api/search_medicine', methods=['GET'])
+def api_search_medicine():
+    query = request.args.get('query')
+    medicines = []
+
+    if query:
+        # Simulating database query using a list of Medicine objects
+        all_medicines = [
+            Medicine("Aspirin"),
+            Medicine("Ibuprofen"),
+            Medicine("Paracetamol"),
+            Medicine("Loratadine"),
+            Medicine("Amoxicillin"),
+            Medicine("Omeprazole"),
+            Medicine("Codeine"),
+            Medicine("Ciprofloxacin"),
+            Medicine("Propranolol"),
+            Medicine("Cetirizine"),
+            Medicine("Cyclizine"),
+            Medicine("Diazepam"),
+            Medicine("Dihydrocodeine"),
+            Medicine("Doxycycline"),
+
+        ]
+        
+        # Filter medicines based on query
+        medicines = [medicine.name for medicine in all_medicines if query.lower() in medicine.name.lower()]
+
+    return jsonify(medicines)
 
 
 
@@ -339,6 +369,7 @@ def get_patient():
 @app.route('/manage_doctor', methods=['GET'])
 def manage_doctor():
     doctors = User.query.filter_by(role=2).all()
+
     return render_template('manage_doctor.html', doctors=doctors)
 
 
@@ -449,5 +480,5 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
     

@@ -1,22 +1,8 @@
-<link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet">
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="container mx-auto my-4">
-      {% for message in messages %}
-        {% if message[0] == 'error' %}
-          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-2" role="alert">
-        {% else %}
-          <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 my-2" role="alert">
-        {% endif %}
-      
-        <p>{{ message[1] }}</p>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
-
-
+{% if error %}
+<div class="error-message">
+    {{ error }}
+</div>
+{% endif %}
 
 
 {% if user.role == 1 %}
@@ -251,6 +237,8 @@
     <div style="width: 416px; height: 76px; left: 220px; top: 659px; position: absolute; background: #324F99; border-radius: 20px"></div>
     <div style="width: 416px; height: 76px; left: 781px; top: 659px; position: absolute; background: #324F99; border-radius: 20px"></div>
     <a href="/book_appointment"><button type="submit" style="width: 349px; border: #324F99; height: 70px; left: 250px; top: 663px; background-color: #324F99; position: absolute; color: white; font-size: 32px; font-family: Caudex; font-weight: 400; word-wrap: break-word" >Book Appointment</button></a>
-    <button type="submit" style="width: 232px; height: 47px; left: 882px; top: 676px; position: absolute; background-color: #324F99; border: #324F99; color: white; font-size: 32px; font-family: Caudex; font-weight: 400; word-wrap: break-word ">Health Record</button>
+    
+    
+    <a href="/patient_history"><button type="submit" style="width: 232px; height: 47px; left: 882px; top: 676px; position: absolute; background-color: #324F99; border: #324F99; color: white; font-size: 32px; font-family: Caudex; font-weight: 400; word-wrap: break-word ">Health Record</button></a>
   </div>
 {% endif %}
